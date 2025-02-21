@@ -8,7 +8,7 @@
 import FirebaseStorage
 import Foundation
 
-struct CloudStorageManager {
+public struct CloudStorageManager {
     
     private var storage: Storage
     
