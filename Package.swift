@@ -5,17 +5,27 @@ import PackageDescription
 
 let package = Package(
     name: "SwiftyFirebase",
+    platforms: [
+        .macOS(.v10_14), .iOS(.v13), .tvOS(.v13)
+    ],
     products: [
-        // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
             name: "SwiftyFirebase",
             targets: ["SwiftyFirebase"]),
     ],
+    dependencies: [
+        .package(url: "https://github.com/firebase/firebase-ios-sdk", from: "11.8.1")
+    ],
     targets: [
-        // Targets are the basic building blocks of a package, defining a module or a test suite.
-        // Targets can depend on other targets in this package and products from dependencies.
         .target(
-            name: "SwiftyFirebase"),
+            name: "SwiftyFirebase",
+            dependencies: [
+                .product(name: "FirebaseAuth", package: "firebase-ios-sdk"),
+                .product(name: "FirebaseFirestore", package: "firebase-ios-sdk"),
+                .product(name: "FirebaseStorage", package: "firebase-ios-sdk"),
+                .product(name: "FirebaseAnalytics", package: "firebase-ios-sdk")
+            ]
+        ),
         .testTarget(
             name: "SwiftyFirebaseTests",
             dependencies: ["SwiftyFirebase"]
