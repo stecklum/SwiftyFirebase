@@ -12,7 +12,7 @@ public class FirestoreManager<T: FirestoreEntity>: StoreManager {
     private var firestore: Firestore
     private var collectionPath: String
 
-    init(collection: FirestoreCollection) {
+    public init(collection: FirestoreCollection) {
         firestore = Firestore.firestore()
         collectionPath = collection.rawValue
     }
@@ -83,7 +83,7 @@ public class FirestoreManager<T: FirestoreEntity>: StoreManager {
         }
     }
     
-    func get(documentId: String, completion: @escaping (Result<T?, Error>) -> Void) {
+    public func get(documentId: String, completion: @escaping (Result<T?, Error>) -> Void) {
         firestore.collection(collectionPath).document(documentId).getDocument { snapshot, error in
             do {
                 if let error {
@@ -111,7 +111,7 @@ public class FirestoreManager<T: FirestoreEntity>: StoreManager {
         }
     }
     
-    func getAll(completion: @escaping (Result<[T], Error>) -> Void) {
+    public func getAll(completion: @escaping (Result<[T], Error>) -> Void) {
         firestore.collection(collectionPath).getDocuments { (snapshot, error) in
             if let error {
                 completion(.failure(error))
@@ -124,7 +124,7 @@ public class FirestoreManager<T: FirestoreEntity>: StoreManager {
         }
     }
     
-    func getAll(filteredBy filter: Filter, completion: @escaping (Result<[T], Error>) -> Void) {
+    public func getAll(filteredBy filter: Filter, completion: @escaping (Result<[T], Error>) -> Void) {
         firestore.collection(collectionPath).whereFilter(filter).getDocuments { snapshot, error in
             if let error {
                 completion(.failure(error))

@@ -8,7 +8,7 @@
 import FirebaseFirestore
 
 public class ListenerFactory {
-    static func create<T: FirestoreEntity>(withFilter filter: Filter) -> FirestoreListener<T> {
+    public static func create<T: FirestoreEntity>(withFilter filter: Filter) -> FirestoreListener<T> {
         FirestoreListener<T>(filter: filter)
     }
 }

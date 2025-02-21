@@ -12,7 +12,7 @@ public struct CloudStorageManager {
     
     private var storage: Storage
     
-    init(storage: Storage = Storage.storage()) {
+    public init(storage: Storage = Storage.storage()) {
         self.storage = storage
     }
     
@@ -29,7 +29,7 @@ public struct CloudStorageManager {
         }
     }
     
-    func uploadData(_ data: Data, to path: String) async throws -> String {
+    public func uploadData(_ data: Data, to path: String) async throws -> String {
         try await withCheckedThrowingContinuation { continuation in
             uploadData(data, to: path) { result in
                 switch result {
@@ -54,7 +54,7 @@ public struct CloudStorageManager {
         }
     }
     
-    func fetchData(from path: String) async throws -> Data {
+    public func fetchData(from path: String) async throws -> Data {
         try await withCheckedThrowingContinuation { continuation in
             fetchData(from: path) { result in
                 switch result {

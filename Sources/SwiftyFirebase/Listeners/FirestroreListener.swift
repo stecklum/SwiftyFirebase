@@ -12,11 +12,11 @@ import Foundation
 public class FirestoreListener<Entity: FirestoreEntity> {
     
     private var firestore: Firestore
-    var objects: [Entity] = []
-    var listenerRegistration: ListenerRegistration?
-    var errorMessage: String?
+    public var objects: [Entity] = []
+    public var listenerRegistration: ListenerRegistration?
+    public var errorMessage: String?
     
-    init(filter: Filter) {
+    public init(filter: Filter) {
         firestore = Firestore.firestore()
         listenerRegistration = firestore.collection(Entity.collection.rawValue).whereFilter(filter).addSnapshotListener { [weak self] snapshots, error in
             if let error {

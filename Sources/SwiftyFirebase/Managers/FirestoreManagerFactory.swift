@@ -6,7 +6,7 @@
 //
 
 public class FirestoreManagerFactory {
-    static func create<T: FirestoreEntity>() -> FirestoreManager<T> {
+    public static func create<T: FirestoreEntity>() -> FirestoreManager<T> {
         FirestoreManager<T>(collection: T.collection)
     }
 }
