@@ -3,27 +3,30 @@
 
 import PackageDescription
 
+let packageName = "SwiftyFirebase"
+let firebasePackageName = "firebase-ios-sdk"
+
 let package = Package(
-    name: "SwiftyFirebase",
+    name: packageName,
     platforms: [
         .macOS(.v14), .iOS(.v17), .tvOS(.v17)
     ],
     products: [
         .library(
-            name: "SwiftyFirebase",
-            targets: ["SwiftyFirebase"]),
+            name: packageName,
+            targets: [packageName]),
     ],
     dependencies: [
-        .package(url: "https://github.com/firebase/firebase-ios-sdk", from: "11.8.1")
+        .package(url: "https://github.com/firebase/\(firebasePackageName)", from: "11.8.1")
     ],
     targets: [
         .target(
-            name: "SwiftyFirebase",
+            name: packageName,
             dependencies: [
-                .product(name: "FirebaseAuth", package: "firebase-ios-sdk"),
-                .product(name: "FirebaseFirestore", package: "firebase-ios-sdk"),
-                .product(name: "FirebaseStorage", package: "firebase-ios-sdk"),
-                .product(name: "FirebaseAnalytics", package: "firebase-ios-sdk")
+                .product(name: "FirebaseAuth", package: firebasePackageName),
+                .product(name: "FirebaseFirestore", package: firebasePackageName),
+                .product(name: "FirebaseStorage", package: firebasePackageName),
+                .product(name: "FirebaseAnalytics", package: firebasePackageName)
             ]
         ),
         .testTarget(
