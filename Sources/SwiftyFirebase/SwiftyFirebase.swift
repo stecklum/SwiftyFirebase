@@ -3,6 +3,8 @@
 
 public struct SwiftyFirebase {
     
-    public init() { }
+    public init() {
+        // Package init. No implementation needed.
+    }
     
 }

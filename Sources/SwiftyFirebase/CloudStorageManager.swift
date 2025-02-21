@@ -23,7 +23,6 @@ struct CloudStorageManager {
         storageRef.putData(data) { metadata, error in
             if let error = error {
                 completion(.failure(error))
-                return
             } else {
                 completion(.success(storageRef.fullPath))
             }
