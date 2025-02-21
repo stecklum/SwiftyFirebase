@@ -5,12 +5,11 @@
 //  Created by Tom Stecklum on 21.02.25.
 //
 
-import FirebaseFirestore
-import FirebaseFirestoreSwift
+import Firebase
 
-public class FirestoreManager<T: FirestoreEntity>: StoreManager {
+public class FirestoreManager<T: FirestoreEntity>: StoreManager, @unchecked Sendable {
 
-    private var firestore
+    private var firestore: Firestore
     private var collectionPath: String
 
     init(collection: FirestoreCollection) {
@@ -57,7 +56,7 @@ public class FirestoreManager<T: FirestoreEntity>: StoreManager {
         }
     }
     
-    func update(_ object: T) async throws {
+    public func update(_ object: T) async throws {
         try await withCheckedThrowingContinuation { continuation in
             update(object) { result in
                 switch result {
@@ -71,7 +70,7 @@ public class FirestoreManager<T: FirestoreEntity>: StoreManager {
     }
     
     @discardableResult
-    func save(_ object: T) async throws -> String {
+    public func save(_ object: T) async throws -> String {
         try await withCheckedThrowingContinuation { continuation in
             save(object) { result in
                 switch result {
@@ -99,7 +98,7 @@ public class FirestoreManager<T: FirestoreEntity>: StoreManager {
         }
     }
     
-    func get(documentId: String) async throws -> T? {
+    public func get(documentId: String) async throws -> T? {
         try await withCheckedThrowingContinuation { continuation in
             get(documentId: documentId) { result in
                 switch result {
@@ -138,7 +137,7 @@ public class FirestoreManager<T: FirestoreEntity>: StoreManager {
         }
     }
     
-    func getAll() async throws -> [T] {
+    public func getAll() async throws -> [T] {
         try await withCheckedThrowingContinuation { continuation in
             getAll { result in
                 switch result {
@@ -151,7 +150,7 @@ public class FirestoreManager<T: FirestoreEntity>: StoreManager {
         }
     }
     
-    func getAll(filteredBy filter: Filter) async throws -> [T] {
+    public func getAll(filteredBy filter: Filter) async throws -> [T] {
         try await withCheckedThrowingContinuation { continuation in
             getAll(filteredBy: filter) { result in
                 switch result {
@@ -164,7 +163,7 @@ public class FirestoreManager<T: FirestoreEntity>: StoreManager {
         }
     }
     
-    func listen(notification: @escaping (Result<[T], Error>) -> Void) {
+    public func listen(notification: @escaping (Result<[T], Error>) -> Void) {
         firestore.collection(collectionPath).addSnapshotListener { snapshot, error in
             if let error {
                 notification(.failure(error))
@@ -177,7 +176,7 @@ public class FirestoreManager<T: FirestoreEntity>: StoreManager {
         }
     }
     
-    func listen(filteredBy filter: Filter, notification: @escaping (Result<[T], Error>) -> Void) {
+    public func listen(filteredBy filter: Filter, notification: @escaping (Result<[T], Error>) -> Void) {
         firestore.collection(collectionPath).whereFilter(filter).addSnapshotListener { snapshot, error in
             if let error {
                 notification(.failure(error))
@@ -190,7 +189,7 @@ public class FirestoreManager<T: FirestoreEntity>: StoreManager {
         }
     }
     
-    func listen(documentId: String, notification: @escaping (Result<T, Error>) -> Void) {
+    public func listen(documentId: String, notification: @escaping (Result<T, Error>) -> Void) {
         let documentReference = firestore.collection(collectionPath).document(documentId)
         documentReference.addSnapshotListener { document, error in
             if let error {
@@ -221,7 +220,7 @@ public class FirestoreManager<T: FirestoreEntity>: StoreManager {
         }
     }
     
-    func delete(_ object: T) async throws {
+    public func delete(_ object: T) async throws {
         try await withCheckedThrowingContinuation { continuation in
             delete(object) { result in
                 switch result {

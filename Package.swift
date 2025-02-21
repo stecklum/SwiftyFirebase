@@ -6,7 +6,7 @@ import PackageDescription
 let package = Package(
     name: "SwiftyFirebase",
     platforms: [
-        .macOS(.v10_14), .iOS(.v13), .tvOS(.v13)
+        .macOS(.v14), .iOS(.v13), .tvOS(.v13)
     ],
     products: [
         .library(

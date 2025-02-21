@@ -5,6 +5,8 @@
 //  Created by Tom Stecklum on 21.02.25.
 //
 
+import FirebaseFirestore
+
 public protocol FirestoreRepository {
     associatedtype Entity: FirestoreEntity
     var manager: FirestoreManager<Entity> { get }

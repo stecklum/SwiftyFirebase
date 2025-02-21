@@ -5,4 +5,6 @@
 //  Created by Tom Stecklum on 21.02.25.
 //
 
-public protocol FirestoreCollection: String { }
+public protocol FirestoreCollection {
+    var rawValue: String { get }
+}

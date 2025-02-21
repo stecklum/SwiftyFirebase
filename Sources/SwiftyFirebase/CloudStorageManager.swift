@@ -6,11 +6,11 @@
 //
 
 import Foundation
-import Firebase
+import FirebaseStorage
 
 struct CloudStorageManager {
     
-    private var storage
+    private var storage: Storage
     
     init(storage: Storage = Storage.storage()) {
         self.storage = storage

@@ -8,7 +8,7 @@
 import Foundation
 import FirebaseFirestore
 
-public protocol FirestoreEntity: Identifiable, Codable, Hashable {
+public protocol FirestoreEntity: Identifiable, Codable, Hashable, Sendable {
     var id: String? { get set }
     static var collection: FirestoreCollection { get }
 }

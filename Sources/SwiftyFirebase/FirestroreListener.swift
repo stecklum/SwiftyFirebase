@@ -11,12 +11,13 @@ import FirebaseFirestore
 @Observable
 public class FirestoreListener<Entity: FirestoreEntity> {
     
-    @ObservationIgnored @Injected(\.firestore) private var firestore
+    private var firestore: Firestore
     var objects: [Entity] = []
     var listenerRegistration: ListenerRegistration?
     var errorMessage: String?
     
     init(filter: Filter) {
+        firestore = Firestore.firestore()
         listenerRegistration = firestore.collection(Entity.collection.rawValue).whereFilter(filter).addSnapshotListener { [weak self] snapshots, error in
             if let error {
                 self?.errorMessage = error.localizedDescription
