@@ -5,8 +5,8 @@
 //  Created by Tom Stecklum on 21.02.25.
 //
 
-import Foundation
 import FirebaseFirestore
+import Foundation
 
 @Observable
 public class FirestoreListener<Entity: FirestoreEntity> {

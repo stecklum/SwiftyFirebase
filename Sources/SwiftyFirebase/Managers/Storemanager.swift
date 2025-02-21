@@ -5,7 +5,6 @@
 //  Created by Tom Stecklum on 21.02.25.
 //
 
-import Foundation
 import FirebaseFirestore
 
 public protocol StoreManager {
