@@ -7,7 +7,7 @@
 
 import Firebase
 
-public class FirestoreManager<T: FirestoreEntity>: StoreManager, @unchecked Sendable {
+public class FirestoreManager<T: FirestoreEntity>: StoreManager {
 
     private var firestore: Firestore
     private var collectionPath: String
