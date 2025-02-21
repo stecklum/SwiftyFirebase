@@ -5,7 +5,7 @@
 //  Created by Tom Stecklum on 21.02.25.
 //
 
-import Firebase
+import FirebaseFirestore
 
 public class FirestoreManager<T: FirestoreEntity>: StoreManager {
 
@@ -14,7 +14,7 @@ public class FirestoreManager<T: FirestoreEntity>: StoreManager {
 
     init(collection: FirestoreCollection) {
         firestore = Firestore.firestore()
-        self.collectionPath = collection.rawValue
+        collectionPath = collection.rawValue
     }
     
     private func save(_ object: T, completion: @escaping (Result<String, Error>) -> Void) {
