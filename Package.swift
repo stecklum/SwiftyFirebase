@@ -23,10 +23,12 @@ let package = Package(
         .target(
             name: packageName,
             dependencies: [
+                .product(name: "FirebaseAnalytics", package: firebasePackageName),
                 .product(name: "FirebaseAuth", package: firebasePackageName),
+                .product(name: "FirebaseCrashlytics", package: firebasePackageName),
                 .product(name: "FirebaseFirestore", package: firebasePackageName),
+                .product(name: "FirebaseMessaging", package: firebasePackageName),
                 .product(name: "FirebaseStorage", package: firebasePackageName),
-                .product(name: "FirebaseAnalytics", package: firebasePackageName)
             ]
         ),
         .testTarget(
