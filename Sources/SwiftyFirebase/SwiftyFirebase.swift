@@ -7,6 +7,8 @@
 @_exported import FirebaseCore
 @_exported import FirebaseAnalytics
 @_exported import FirebaseMessaging
+@_exported import FirebaseAppCheck
+@_exported import FirebaseStorage
 
 public struct SwiftyFirebase {
     
